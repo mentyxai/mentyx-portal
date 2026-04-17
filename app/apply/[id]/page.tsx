@@ -180,7 +180,7 @@ export default function LoanApplicationPage() {
       const downPayment = parseCurrency(data.down_payment)
       const loanAmount = purchasePrice - downPayment
       
-      let updates: Partial<Loan> = {
+      const updates: Partial<Loan> = {
         form_data: data,
         current_step: step,
         last_saved_at: new Date().toISOString(),
@@ -190,22 +190,22 @@ export default function LoanApplicationPage() {
         property_zip: data.property_zip,
         property_type: data.property_type,
         property_units: data.property_units,
-        purchase_price: purchasePrice || null,
-        down_payment: downPayment || null,
-        loan_amount: loanAmount || null,
+        purchase_price: purchasePrice || undefined,
+        down_payment: downPayment || undefined,
+        loan_amount: loanAmount || undefined,
       }
 
       if (loan.loan_type === 'dscr') {
-        updates.monthly_rent = parseCurrency(data.monthly_rent) || null
-        updates.annual_taxes = parseCurrency(data.annual_taxes) || null
-        updates.annual_insurance = parseCurrency(data.annual_insurance) || null
-        updates.monthly_hoa = parseCurrency(data.monthly_hoa) || null
+        updates.monthly_rent = parseCurrency(data.monthly_rent) || undefined
+        updates.annual_taxes = parseCurrency(data.annual_taxes) || undefined
+        updates.annual_insurance = parseCurrency(data.annual_insurance) || undefined
+        updates.monthly_hoa = parseCurrency(data.monthly_hoa) || undefined
       }
 
       if (loan.loan_type === 'fix_flip') {
-        updates.rehab_budget = parseCurrency(data.rehab_budget) || null
-        updates.arv = parseCurrency(data.arv) || null
-        updates.rehab_timeline_months = parseInt(data.rehab_timeline_months) || null
+        updates.rehab_budget = parseCurrency(data.rehab_budget) || undefined
+        updates.arv = parseCurrency(data.arv) || undefined
+        updates.rehab_timeline_months = parseInt(data.rehab_timeline_months) || undefined
         updates.exit_strategy = data.exit_strategy
       }
 
