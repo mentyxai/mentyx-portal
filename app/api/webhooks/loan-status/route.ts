@@ -104,7 +104,7 @@ export async function POST(request: Request) {
       notificationType,
       notificationTitle,
       notificationBody,
-      emailTemplate
+      emailTemplate || undefined
     )
 
     return NextResponse.json({ 
